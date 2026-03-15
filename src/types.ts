@@ -35,6 +35,14 @@ export interface FormState {
   responsiveExigences: string;
   seoExigences: string;
   specificConstraints: string;
+
+  // New Sections
+  competitors: string;
+  userPersonas: string;
+  integrations: string;
+  dataModel: string;
+  toneOfVoice: string;
+  roadmap: string;
 }
 
 export const INITIAL_STATE: FormState = {
@@ -57,6 +65,12 @@ export const INITIAL_STATE: FormState = {
   responsiveExigences: 'Mobile-first, entièrement responsive.',
   seoExigences: 'Optimisation des balises meta, structure Hn propre.',
   specificConstraints: '',
+  competitors: '',
+  userPersonas: '',
+  integrations: '',
+  dataModel: '',
+  toneOfVoice: '',
+  roadmap: '',
 };
 
 export const AMBIANCE_OPTIONS = [
