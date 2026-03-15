@@ -1,0 +1,5 @@
+{
+  "name": "PromptArchitect",
+  "description": "Générateur de prompts structurés pour outils de création web (Lovable, Bolt, etc.)",
+  "requestFramePermissions": []
+}
