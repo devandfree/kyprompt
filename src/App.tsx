@@ -270,7 +270,7 @@ ${bullet}${bold('Roadmap :')} ${formData.roadmap || 'N/A'}`);
               Architecte de <span className="text-blue-600">Prompts</span> pour Builders.
             </h1>
             <p className="text-lg md:text-xl text-gray-500 mb-10 max-w-lg leading-relaxed font-medium">
-              Structurez vos idées, définissez votre design et générez des prompts optimisés pour Lovable, Bolt et v0.
+              Structurez vos idées, définissez votre design et générez des prompts optimisés pour Lovable, Google AI Studio, Bolt et v0.
             </p>
             <div className="flex flex-col sm:flex-row items-center gap-3">
               <button
