@@ -266,7 +266,7 @@ ${bullet}${bold('Roadmap :')} ${formData.roadmap || 'N/A'}`);
               <Zap className="w-3.5 h-3.5" />
               Propulsé par l'IA
             </div>
-            <h1 className="text-4xl md:text-6xl font-black tracking-tighter text-gray-900 mb-6 leading-[0.95]">
+            <h1 className="text-5xl md:text-7xl font-black tracking-tighter text-gray-900 mb-6 leading-[0.95]">
               Architecte de <span className="text-blue-600">Prompts</span> pour Builders.
             </h1>
             <p className="text-lg md:text-xl text-gray-500 mb-10 max-w-lg leading-relaxed font-medium">
