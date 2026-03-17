@@ -1,5 +1,5 @@
 {
-  "name": "PromptArchitect",
-  "description": "Générateur de prompts structurés pour outils de création web (Lovable, Bolt, etc.)",
+  "name": "Architecte de Prompts",
+  "description": "Créez des prompts structurés pour vos projets web avec une interface intuitive.",
   "requestFramePermissions": []
 }

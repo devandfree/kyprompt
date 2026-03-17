@@ -55,7 +55,7 @@ export default function App() {
   const [copySuccess, setCopySuccess] = useState(false);
   const [activeSection, setActiveSection] = useState('section1');
   const isScrollingRef = useRef(false);
-  const [view, setView] = useState<'form' | 'preview'>('form');
+  const [view, setView] = useState<'landing' | 'form' | 'preview'>('landing');
   const [editablePrompt, setEditablePrompt] = useState('');
   const [promptOptions, setPromptOptions] = useState<PromptOptions>({
     showSummary: true,
@@ -245,6 +245,100 @@ ${bullet}${bold('Roadmap :')} ${formData.roadmap || 'N/A'}`);
     }
   };
 
+  if (view === 'landing') {
+    return (
+      <div className="min-h-screen bg-white flex items-center justify-center p-6 overflow-hidden relative">
+        {/* Background Decorations */}
+        <div className="absolute top-0 left-0 w-full h-full overflow-hidden -z-10 pointer-events-none">
+          <div className="absolute -top-[10%] -left-[10%] w-[40%] h-[40%] bg-blue-50 rounded-full blur-[120px] opacity-60" />
+          <div className="absolute -bottom-[10%] -right-[10%] w-[40%] h-[40%] bg-indigo-50 rounded-full blur-[120px] opacity-60" />
+        </div>
+
+        <main className="max-w-6xl w-full grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-20 items-center">
+          {/* Column 1: Content */}
+          <motion.div
+            initial={{ opacity: 0, x: -50 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.8, ease: "easeOut" }}
+            className="text-left"
+          >
+            <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-blue-50 text-blue-600 font-semibold text-xs mb-6">
+              <Zap className="w-3.5 h-3.5" />
+              Propulsé par l'IA
+            </div>
+            <h1 className="text-4xl md:text-6xl font-black tracking-tighter text-gray-900 mb-6 leading-[0.95]">
+              Architecte de <span className="text-blue-600">Prompts</span> pour Builders.
+            </h1>
+            <p className="text-lg md:text-xl text-gray-500 mb-10 max-w-lg leading-relaxed font-medium">
+              Structurez vos idées, définissez votre design et générez des prompts optimisés pour Lovable, Bolt et v0.
+            </p>
+            <div className="flex flex-col sm:flex-row items-center gap-3">
+              <button
+                onClick={() => setView('form')}
+                className="w-full sm:w-auto bg-blue-600 hover:bg-blue-700 text-white px-8 py-4 rounded-2xl font-bold text-lg transition-all shadow-xl shadow-blue-200 active:scale-95 flex items-center justify-center gap-2"
+              >
+                Créer un projet
+                <ChevronRight className="w-5 h-5" />
+              </button>
+              <button className="w-full sm:w-auto bg-white hover:bg-gray-50 text-gray-900 border border-gray-200 px-8 py-4 rounded-2xl font-bold text-lg transition-all active:scale-95">
+                Explorer
+              </button>
+            </div>
+          </motion.div>
+
+          {/* Column 2: Visual */}
+          <motion.div
+            initial={{ opacity: 0, scale: 0.8, rotate: -2 }}
+            animate={{ opacity: 1, scale: 1, rotate: 0 }}
+            transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
+            className="relative hidden lg:block"
+          >
+            <div className="relative z-10 rounded-[32px] overflow-hidden shadow-[0_24px_48px_-12px_rgba(0,0,0,0.1)] border border-gray-100 bg-gray-50 aspect-[4/5] max-w-[400px] mx-auto">
+               <img 
+                 src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&q=80&w=800&h=1000" 
+                 alt="Architect Visual" 
+                 className="w-full h-full object-cover mix-blend-multiply opacity-90"
+                 referrerPolicy="no-referrer"
+               />
+               <div className="absolute inset-0 bg-gradient-to-tr from-blue-600/10 to-transparent" />
+            </div>
+            
+            {/* Floating UI Elements */}
+            <motion.div 
+              animate={{ y: [0, -8, 0] }}
+              transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
+              className="absolute top-0 -left-4 bg-white p-3 rounded-xl shadow-lg border border-gray-100 z-20"
+            >
+              <div className="flex items-center gap-2">
+                <div className="w-6 h-6 bg-emerald-100 text-emerald-600 rounded-lg flex items-center justify-center">
+                  <Check className="w-3 h-3" />
+                </div>
+                <div className="text-[10px] font-bold text-gray-900">Prompt Optimisé</div>
+              </div>
+            </motion.div>
+
+            <motion.div 
+              animate={{ y: [0, 8, 0] }}
+              transition={{ duration: 5, repeat: Infinity, ease: "easeInOut", delay: 1 }}
+              className="absolute bottom-0 -right-4 bg-white p-3 rounded-xl shadow-lg border border-gray-100 z-20"
+            >
+              <div className="flex items-center gap-2">
+                <div className="w-6 h-6 bg-blue-100 text-blue-600 rounded-lg flex items-center justify-center">
+                  <Zap className="w-3 h-3" />
+                </div>
+                <div className="text-[10px] font-bold text-gray-900">Vitesse IA</div>
+              </div>
+            </motion.div>
+
+            {/* Decorative background blurs */}
+            <div className="absolute -top-10 -right-10 w-60 h-60 bg-blue-200 rounded-full blur-[80px] opacity-20 -z-10" />
+            <div className="absolute -bottom-10 -left-10 w-60 h-60 bg-indigo-200 rounded-full blur-[80px] opacity-20 -z-10" />
+          </motion.div>
+        </main>
+      </div>
+    );
+  }
+
   if (view === 'preview') {
     return (
       <div className="min-h-screen bg-[#F8F9FA] text-[#1A1A1A] font-sans selection:bg-blue-100">
@@ -400,7 +494,11 @@ ${bullet}${bold('Roadmap :')} ${formData.roadmap || 'N/A'}`);
     <div className="min-h-screen bg-[#F8F9FA] text-[#1A1A1A] font-sans selection:bg-blue-100">
       {/* Header */}
       <header className="sticky top-0 z-50 bg-white/80 backdrop-blur-md border-b border-gray-200 px-6 py-4 flex items-center justify-between">
-        <div className="flex items-center gap-2">
+        <div 
+          onClick={() => setView('landing')}
+          className="flex items-center gap-2 cursor-pointer hover:opacity-80 transition-opacity"
+        >
+          <div className="w-6 h-6 bg-blue-600 rounded-lg" />
           <h1 className="text-xl font-bold tracking-tight text-gray-900">PromptArchitect</h1>
         </div>
         <button 
