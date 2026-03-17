@@ -12,12 +12,12 @@ import {
   Monitor, 
   Zap,
   ChevronRight,
-  Sparkles,
   Users,
   Database,
   Link,
   MessageSquare,
-  Milestone
+  Milestone,
+  X
 } from 'lucide-react';
 import { motion, AnimatePresence } from 'motion/react';
 import { FormState, INITIAL_STATE, AMBIANCE_OPTIONS, Page } from './types';
@@ -227,7 +227,7 @@ ${bullet}${bold('Roadmap :')} ${formData.roadmap || 'N/A'}`);
       setTimeout(() => {
         setCopySuccess(false);
         setIsGenerated(false);
-      }, 3000);
+      }, 6000);
     });
   };
 
@@ -369,15 +369,26 @@ ${bullet}${bold('Roadmap :')} ${formData.roadmap || 'N/A'}`);
         <AnimatePresence>
           {isGenerated && (
             <motion.div 
-              initial={{ opacity: 0, y: 50 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: 50 }}
-              className="fixed bottom-8 left-1/2 -translate-x-1/2 bg-gray-900 text-white px-6 py-4 rounded-2xl shadow-2xl flex items-center gap-4 z-[100]"
+              initial={{ opacity: 0, y: 50, x: '-50%' }}
+              animate={{ opacity: 1, y: 0, x: '-50%' }}
+              exit={{ opacity: 0, y: 50, x: '-50%' }}
+              className="fixed bottom-8 left-1/2 bg-gray-900 text-white px-6 py-5 rounded-2xl shadow-2xl flex items-center gap-6 z-[100] min-w-[320px] max-w-[90vw] border border-white/10"
             >
-              <div className="w-8 h-8 bg-green-500 rounded-full flex items-center justify-center">
-                <Check className="w-5 h-5" />
+              <div className="w-10 h-10 bg-green-500/20 text-green-400 rounded-full flex items-center justify-center shrink-0">
+                <Check className="w-6 h-6" />
               </div>
-              <p className="font-bold">Copié dans le presse-papier !</p>
+              <div className="flex-1">
+                <p className="font-bold text-lg mb-0.5">Prompt copié !</p>
+                <p className="text-sm text-white/60 leading-relaxed">
+                  Il est prêt à être collé dans <span className="text-white font-medium">Lovable</span>, <span className="text-white font-medium">Bolt</span> ou <span className="text-white font-medium">v0</span> pour lancer votre projet.
+                </p>
+              </div>
+              <button 
+                onClick={() => setIsGenerated(false)}
+                className="p-2 hover:bg-white/10 rounded-full transition-colors shrink-0"
+              >
+                <X className="w-5 h-5 text-white/40" />
+              </button>
             </motion.div>
           )}
         </AnimatePresence>
@@ -396,7 +407,6 @@ ${bullet}${bold('Roadmap :')} ${formData.roadmap || 'N/A'}`);
           onClick={handleGeneratePrompt}
           className="bg-blue-600 hover:bg-blue-700 text-white px-5 py-2 rounded-full font-medium transition-all flex items-center gap-2 shadow-lg shadow-blue-100 active:scale-95"
         >
-          <Sparkles className="w-4 h-4" />
           Générer le prompt
         </button>
       </header>
@@ -908,7 +918,6 @@ ${bullet}${bold('Roadmap :')} ${formData.roadmap || 'N/A'}`);
               onClick={handleGeneratePrompt}
               className="group relative bg-blue-600 hover:bg-blue-700 text-white px-12 py-5 rounded-2xl font-bold text-lg transition-all flex items-center gap-4 shadow-xl shadow-blue-200 active:scale-95"
             >
-              <Sparkles className="w-6 h-6 group-hover:rotate-12 transition-transform" />
               Générer le prompt structuré
               <ChevronRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
             </button>
