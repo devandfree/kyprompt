@@ -426,7 +426,7 @@ ${bullet}${bold('Roadmap :')} ${formData.roadmap || 'N/A'}`);
           <div className="flex items-center gap-2 sm:gap-3">
             <button 
               onClick={() => setView('landing')}
-              className="text-gray-500 hover:text-red-600 font-medium px-2 sm:px-4 py-2 flex items-center gap-1 sm:gap-2 transition-colors text-sm sm:text-base hidden sm:flex"
+              className="text-gray-500 hover:text-red-600 font-medium px-2 sm:px-4 py-2 flex items-center gap-1 sm:gap-2 transition-colors text-sm sm:text-base"
             >
               <X className="w-4 h-4" />
               Quitter
@@ -585,7 +585,7 @@ ${bullet}${bold('Roadmap :')} ${formData.roadmap || 'N/A'}`);
             className="text-gray-500 hover:text-red-600 font-medium px-2 sm:px-4 py-2 flex items-center gap-1 sm:gap-2 transition-colors text-sm sm:text-base"
           >
             <X className="w-4 h-4" />
-            <span className="hidden xs:inline">Quitter</span>
+            Quitter
           </button>
           <button 
             onClick={handleGeneratePrompt}
