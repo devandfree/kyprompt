@@ -51,26 +51,48 @@ const SECTIONS = [
 ];
 
 export default function App() {
-  const [formData, setFormData] = useState<FormState>(INITIAL_STATE);
+  const [formData, setFormData] = useState<FormState>(() => {
+    const saved = localStorage.getItem('prompt_architect_form_data');
+    return saved ? JSON.parse(saved) : INITIAL_STATE;
+  });
   const [isGenerated, setIsGenerated] = useState(false);
   const [copySuccess, setCopySuccess] = useState(false);
   const [activeSection, setActiveSection] = useState('section1');
   const isScrollingRef = useRef(false);
-  const [view, setView] = useState<'landing' | 'form' | 'preview'>('landing');
+  const [view, setView] = useState<'landing' | 'form' | 'preview'>(() => {
+    const saved = localStorage.getItem('prompt_architect_view');
+    return (saved as any) || 'landing';
+  });
   const [isLoading, setIsLoading] = useState(false);
   const [editablePrompt, setEditablePrompt] = useState('');
-  const [promptOptions, setPromptOptions] = useState<PromptOptions>({
-    showSummary: true,
-    showPages: true,
-    showStrategy: true,
-    showDesign: true,
-    showColors: true,
-    showFeatures: true,
-    showTechnical: true,
-    showConstraints: true,
-    showRoadmap: true,
-    style: 'standard'
+  const [promptOptions, setPromptOptions] = useState<PromptOptions>(() => {
+    const saved = localStorage.getItem('prompt_architect_options');
+    return saved ? JSON.parse(saved) : {
+      showSummary: true,
+      showPages: true,
+      showStrategy: true,
+      showDesign: true,
+      showColors: true,
+      showFeatures: true,
+      showTechnical: true,
+      showConstraints: true,
+      showRoadmap: true,
+      style: 'standard'
+    };
   });
+
+  // Persist state to localStorage
+  useEffect(() => {
+    localStorage.setItem('prompt_architect_view', view);
+  }, [view]);
+
+  useEffect(() => {
+    localStorage.setItem('prompt_architect_form_data', JSON.stringify(formData));
+  }, [formData]);
+
+  useEffect(() => {
+    localStorage.setItem('prompt_architect_options', JSON.stringify(promptOptions));
+  }, [promptOptions]);
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
@@ -399,7 +421,7 @@ ${bullet}${bold('Roadmap :')} ${formData.roadmap || 'N/A'}`);
           </motion.div>
         </main>
 
-        <footer className="absolute bottom-8 left-0 w-full px-10">
+        <footer className="absolute bottom-8 left-0 w-full px-10 text-center lg:text-left">
           <div className="max-w-6xl mx-auto">
             <p className="text-gray-400 text-sm font-medium">
               © {new Date().getFullYear()} PromptArchitect — Conçu par <span className="text-gray-900 font-bold">Steve EMANE</span>
@@ -531,7 +553,7 @@ ${bullet}${bold('Roadmap :')} ${formData.roadmap || 'N/A'}`);
           </div>
         </main>
 
-        <footer className="max-w-7xl mx-auto py-12 px-8 text-left border-t border-gray-200 mt-12">
+        <footer className="max-w-7xl mx-auto py-12 px-8 text-center lg:text-left border-t border-gray-200 mt-12">
           <p className="text-gray-400 text-sm font-medium">
             © {new Date().getFullYear()} PromptArchitect — Conçu par <span className="text-gray-900 font-bold">Steve EMANE</span>
           </p>
@@ -1111,7 +1133,7 @@ ${bullet}${bold('Roadmap :')} ${formData.roadmap || 'N/A'}`);
         </div>
       </main>
 
-      <footer className="max-w-6xl mx-auto py-12 px-8 text-left border-t border-gray-200 mt-12">
+      <footer className="max-w-6xl mx-auto py-12 px-8 text-center lg:text-left border-t border-gray-200 mt-12">
         <p className="text-gray-400 text-sm font-medium">
           © {new Date().getFullYear()} PromptArchitect — Conçu par <span className="text-gray-900 font-bold">Steve EMANE</span>
         </p>
