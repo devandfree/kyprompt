@@ -870,41 +870,62 @@ ${bullet}${bold('Roadmap :')} ${formData.roadmap || 'N/A'}`);
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 sm:gap-8">
               <div className="space-y-3">
                 <label className="text-sm font-semibold text-gray-700 block">Primaire</label>
-                <div className="flex items-center gap-3">
+                <div className="flex items-center gap-2 px-3 py-2 rounded-xl border border-gray-200 focus-within:ring-2 focus-within:ring-blue-500 focus-within:border-transparent transition-all bg-gray-50/30">
                   <input 
                     type="color" 
                     name="primaryColor"
+                    value={formData.primaryColor.startsWith('#') && formData.primaryColor.length === 7 ? formData.primaryColor : '#000000'}
+                    onChange={handleInputChange}
+                    className="w-8 h-8 rounded-lg border-none cursor-pointer bg-transparent shrink-0"
+                  />
+                  <input
+                    type="text"
+                    name="primaryColor"
                     value={formData.primaryColor}
                     onChange={handleInputChange}
-                    className="w-12 h-12 rounded-xl border-none cursor-pointer bg-transparent"
+                    className="w-full text-xs font-mono uppercase outline-none bg-transparent"
+                    placeholder="#HEX"
                   />
-                  <span className="text-xs font-mono text-gray-500 uppercase">{formData.primaryColor}</span>
                 </div>
               </div>
               <div className="space-y-3">
                 <label className="text-sm font-semibold text-gray-700 block">Secondaire</label>
-                <div className="flex items-center gap-3">
+                <div className="flex items-center gap-2 px-3 py-2 rounded-xl border border-gray-200 focus-within:ring-2 focus-within:ring-blue-500 focus-within:border-transparent transition-all bg-gray-50/30">
                   <input 
                     type="color" 
                     name="secondaryColor"
+                    value={formData.secondaryColor.startsWith('#') && formData.secondaryColor.length === 7 ? formData.secondaryColor : '#000000'}
+                    onChange={handleInputChange}
+                    className="w-8 h-8 rounded-lg border-none cursor-pointer bg-transparent shrink-0"
+                  />
+                  <input
+                    type="text"
+                    name="secondaryColor"
                     value={formData.secondaryColor}
                     onChange={handleInputChange}
-                    className="w-12 h-12 rounded-xl border-none cursor-pointer bg-transparent"
+                    className="w-full text-xs font-mono uppercase outline-none bg-transparent"
+                    placeholder="#HEX"
                   />
-                  <span className="text-xs font-mono text-gray-500 uppercase">{formData.secondaryColor}</span>
                 </div>
               </div>
               <div className="space-y-3">
                 <label className="text-sm font-semibold text-gray-700 block">Accent</label>
-                <div className="flex items-center gap-3">
+                <div className="flex items-center gap-2 px-3 py-2 rounded-xl border border-gray-200 focus-within:ring-2 focus-within:ring-blue-500 focus-within:border-transparent transition-all bg-gray-50/30">
                   <input 
                     type="color" 
                     name="accentColor"
+                    value={formData.accentColor.startsWith('#') && formData.accentColor.length === 7 ? formData.accentColor : '#000000'}
+                    onChange={handleInputChange}
+                    className="w-8 h-8 rounded-lg border-none cursor-pointer bg-transparent shrink-0"
+                  />
+                  <input
+                    type="text"
+                    name="accentColor"
                     value={formData.accentColor}
                     onChange={handleInputChange}
-                    className="w-12 h-12 rounded-xl border-none cursor-pointer bg-transparent"
+                    className="w-full text-xs font-mono uppercase outline-none bg-transparent"
+                    placeholder="#HEX"
                   />
-                  <span className="text-xs font-mono text-gray-500 uppercase">{formData.accentColor}</span>
                 </div>
               </div>
               <div className="col-span-3 space-y-2">
