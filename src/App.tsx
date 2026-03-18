@@ -252,7 +252,7 @@ ${bullet}${bold('Roadmap :')} ${formData.roadmap || 'N/A'}`);
     setTimeout(() => {
       setView('form');
       setIsLoading(false);
-    }, 3000);
+    }, 2000);
   };
 
   if (isLoading) {
@@ -283,7 +283,7 @@ ${bullet}${bold('Roadmap :')} ${formData.roadmap || 'N/A'}`);
             <motion.div
               initial={{ x: "-100%" }}
               animate={{ x: "0%" }}
-              transition={{ duration: 3, ease: "easeInOut" }}
+              transition={{ duration: 2, ease: "easeInOut" }}
               className="w-full h-full bg-blue-600"
             />
           </div>
@@ -301,25 +301,25 @@ ${bullet}${bold('Roadmap :')} ${formData.roadmap || 'N/A'}`);
           <div className="absolute -bottom-[10%] -right-[10%] w-[40%] h-[40%] bg-indigo-50 rounded-full blur-[120px] opacity-60" />
         </div>
 
-        <main className="max-w-6xl w-full grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-20 items-center">
+        <main className="max-w-6xl w-full grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-20 items-center px-4 sm:px-6">
           {/* Column 1: Content */}
           <motion.div
             initial={{ opacity: 0, x: -50 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8, ease: "easeOut" }}
-            className="text-left"
+            className="text-center lg:text-left"
           >
             <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-blue-50 text-blue-600 font-semibold text-xs mb-6">
               <Zap className="w-3.5 h-3.5" />
               Propulsé par l'IA
             </div>
-            <h1 className="text-5xl md:text-7xl font-black tracking-tighter text-gray-900 mb-6 leading-[0.95]">
+            <h1 className="text-4xl sm:text-5xl md:text-7xl font-black tracking-tighter text-gray-900 mb-6 leading-[0.95]">
               Architecte de <span className="text-blue-600">Prompts</span> pour Builders.
             </h1>
-            <p className="text-lg md:text-xl text-gray-500 mb-10 max-w-lg leading-relaxed font-medium">
+            <p className="text-base sm:text-lg md:text-xl text-gray-500 mb-10 max-w-lg mx-auto lg:mx-0 leading-relaxed font-medium">
               Structurez vos idées, définissez votre design et générez des prompts optimisés pour Lovable, Google AI Studio, Bolt et v0.
             </p>
-            <div className="flex flex-col sm:flex-row items-center gap-6">
+            <div className="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-6">
               <button
                 onClick={handleStart}
                 className="w-full sm:w-auto bg-blue-600 hover:bg-blue-700 text-white px-8 py-4 rounded-2xl font-bold text-lg transition-all shadow-xl shadow-blue-200 active:scale-95 flex items-center justify-center gap-2"
@@ -413,41 +413,35 @@ ${bullet}${bold('Roadmap :')} ${formData.roadmap || 'N/A'}`);
   if (view === 'preview') {
     return (
       <div className="min-h-screen bg-[#F8F9FA] text-[#1A1A1A] font-sans selection:bg-blue-100">
-        <header className="sticky top-0 z-50 bg-white/80 backdrop-blur-md border-b border-gray-200 px-6 py-4 flex items-center justify-between">
-          <div className="flex items-center gap-2">
+        <header className="sticky top-0 z-50 bg-white/80 backdrop-blur-md border-b border-gray-200 px-4 sm:px-6 py-3 sm:py-4 flex items-center justify-between">
+          <div className="flex items-center gap-1 sm:gap-2">
             <button 
               onClick={() => setView('form')}
-              className="p-2 hover:bg-gray-100 rounded-full transition-colors mr-2"
+              className="p-1.5 sm:p-2 hover:bg-gray-100 rounded-full transition-colors mr-1 sm:mr-2"
             >
-              <ChevronRight className="w-5 h-5 rotate-180" />
+              <ChevronRight className="w-4 h-4 sm:w-5 sm:h-5 rotate-180" />
             </button>
-            <h1 className="text-xl font-bold tracking-tight text-gray-900">Aperçu du Prompt</h1>
+            <h1 className="text-lg sm:text-xl font-bold tracking-tight text-gray-900">Aperçu</h1>
           </div>
-          <div className="flex items-center gap-3">
+          <div className="flex items-center gap-2 sm:gap-3">
             <button 
               onClick={() => setView('landing')}
-              className="text-gray-500 hover:text-red-600 font-medium px-4 py-2 flex items-center gap-2 transition-colors"
+              className="text-gray-500 hover:text-red-600 font-medium px-2 sm:px-4 py-2 flex items-center gap-1 sm:gap-2 transition-colors text-sm sm:text-base hidden sm:flex"
             >
               <X className="w-4 h-4" />
               Quitter
             </button>
             <button 
-              onClick={() => setView('form')}
-              className="text-gray-500 hover:text-gray-900 font-medium px-4 py-2"
-            >
-              Retour à l'édition
-            </button>
-            <button 
               onClick={copyToClipboard}
-              className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-2 rounded-full font-medium transition-all flex items-center gap-2 shadow-lg shadow-blue-100 active:scale-95"
+              className="bg-blue-600 hover:bg-blue-700 text-white px-4 sm:px-6 py-2 rounded-full font-medium transition-all flex items-center gap-1 sm:gap-2 shadow-lg shadow-blue-100 active:scale-95 text-sm sm:text-base"
             >
               {copySuccess ? <Check className="w-4 h-4" /> : <Copy className="w-4 h-4" />}
-              {copySuccess ? 'Copié !' : 'Copier le prompt final'}
+              <span>{copySuccess ? 'Copié !' : 'Copier'}</span>
             </button>
           </div>
         </header>
 
-        <main className="max-w-7xl mx-auto p-8 grid grid-cols-1 lg:grid-cols-4 gap-8">
+        <main className="max-w-7xl mx-auto p-4 sm:p-8 grid grid-cols-1 lg:grid-cols-4 gap-6 sm:gap-8">
           {/* Customization Sidebar */}
           <aside className="lg:col-span-1 space-y-6">
             <div className="bg-white rounded-3xl p-6 shadow-sm border border-gray-100">
@@ -514,14 +508,14 @@ ${bullet}${bold('Roadmap :')} ${formData.roadmap || 'N/A'}`);
             <motion.div 
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              className="bg-white rounded-3xl p-8 shadow-sm border border-gray-100"
+              className="bg-white rounded-2xl sm:rounded-3xl p-5 sm:p-8 shadow-sm border border-gray-100"
             >
-              <div className="mb-6 flex items-center justify-between">
+              <div className="mb-6 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
                 <div>
                   <h2 className="text-lg font-bold">Votre prompt structuré</h2>
                   <p className="text-sm text-gray-500">Vous pouvez modifier ou compléter le texte ci-dessous avant de le copier.</p>
                 </div>
-                <div className="flex items-center gap-2 text-xs font-mono text-gray-400 bg-gray-50 px-3 py-1 rounded-full">
+                <div className="flex items-center gap-2 text-xs font-mono text-gray-400 bg-gray-50 px-3 py-1 rounded-full w-fit">
                   <FileText className="w-3 h-3" />
                   {editablePrompt.length} caractères
                 </div>
@@ -530,7 +524,7 @@ ${bullet}${bold('Roadmap :')} ${formData.roadmap || 'N/A'}`);
               <textarea 
                 value={editablePrompt}
                 onChange={(e) => setEditablePrompt(e.target.value)}
-                className="w-full h-[65vh] p-6 rounded-2xl bg-gray-50 border border-gray-100 focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition-all font-mono text-sm leading-relaxed"
+                className="w-full h-[50vh] sm:h-[65vh] p-4 sm:p-6 rounded-xl sm:rounded-2xl bg-gray-50 border border-gray-100 focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition-all font-mono text-xs sm:text-sm leading-relaxed"
                 spellCheck={false}
               />
             </motion.div>
@@ -577,32 +571,33 @@ ${bullet}${bold('Roadmap :')} ${formData.roadmap || 'N/A'}`);
   return (
     <div className="min-h-screen bg-[#F8F9FA] text-[#1A1A1A] font-sans selection:bg-blue-100">
       {/* Header */}
-      <header className="sticky top-0 z-50 bg-white/80 backdrop-blur-md border-b border-gray-200 px-6 py-4 flex items-center justify-between">
+      <header className="sticky top-0 z-50 bg-white/80 backdrop-blur-md border-b border-gray-200 px-4 sm:px-6 py-3 sm:py-4 flex items-center justify-between">
         <div 
           onClick={() => setView('landing')}
           className="flex items-center gap-2 cursor-pointer hover:opacity-80 transition-opacity"
         >
-          <div className="w-6 h-6 bg-blue-600 rounded-lg" />
-          <h1 className="text-xl font-bold tracking-tight text-gray-900">PromptArchitect</h1>
+          <div className="w-5 h-5 sm:w-6 sm:h-6 bg-blue-600 rounded-lg" />
+          <h1 className="text-lg sm:text-xl font-bold tracking-tight text-gray-900">PromptArchitect</h1>
         </div>
-        <div className="flex items-center gap-3">
+        <div className="flex items-center gap-2 sm:gap-3">
           <button 
             onClick={() => setView('landing')}
-            className="text-gray-500 hover:text-red-600 font-medium px-4 py-2 flex items-center gap-2 transition-colors"
+            className="text-gray-500 hover:text-red-600 font-medium px-2 sm:px-4 py-2 flex items-center gap-1 sm:gap-2 transition-colors text-sm sm:text-base"
           >
             <X className="w-4 h-4" />
-            Quitter
+            <span className="hidden xs:inline">Quitter</span>
           </button>
           <button 
             onClick={handleGeneratePrompt}
-            className="bg-blue-600 hover:bg-blue-700 text-white px-5 py-2 rounded-full font-medium transition-all flex items-center gap-2 shadow-lg shadow-blue-100 active:scale-95"
+            className="bg-blue-600 hover:bg-blue-700 text-white px-3 sm:px-5 py-2 rounded-full font-medium transition-all flex items-center gap-1 sm:gap-2 shadow-lg shadow-blue-100 active:scale-95 text-sm sm:text-base"
           >
-            Générer le prompt
+            <span className="hidden xs:inline">Générer</span>
+            <span className="xs:hidden">Générer</span>
           </button>
         </div>
       </header>
 
-      <main className="max-w-6xl mx-auto flex gap-8 p-8">
+      <main className="max-w-6xl mx-auto flex gap-8 p-4 sm:p-8">
         {/* Sidebar Navigation */}
         <aside className="w-64 shrink-0 hidden lg:block sticky top-24 h-fit">
           <nav className="space-y-1">
@@ -640,18 +635,18 @@ ${bullet}${bold('Roadmap :')} ${formData.roadmap || 'N/A'}`);
         {/* Form Content */}
         <div className="flex-1 space-y-12 pb-32">
           {/* Section 1 */}
-          <section id="section1" className="bg-white rounded-3xl p-8 shadow-sm border border-gray-100 scroll-mt-20">
-            <div className="flex items-center gap-3 mb-8">
-              <div className="w-10 h-10 bg-blue-50 text-blue-600 rounded-xl flex items-center justify-center">
+          <section id="section1" className="bg-white rounded-2xl sm:rounded-3xl p-5 sm:p-8 shadow-sm border border-gray-100 scroll-mt-20">
+            <div className="flex items-center gap-3 mb-6 sm:mb-8">
+              <div className="w-10 h-10 bg-blue-50 text-blue-600 rounded-xl flex items-center justify-center shrink-0">
                 <FileText className="w-5 h-5" />
               </div>
               <div>
-                <h2 className="text-xl font-bold">Résumé du projet</h2>
-                <p className="text-sm text-gray-500">Posez le contexte général de votre application.</p>
+                <h2 className="text-lg sm:text-xl font-bold">Résumé du projet</h2>
+                <p className="text-xs sm:text-sm text-gray-500">Posez le contexte général de votre application.</p>
               </div>
             </div>
             
-            <div className="grid grid-cols-2 gap-6">
+            <div className="grid grid-cols-2 gap-4 sm:gap-6">
               <div className="col-span-2 md:col-span-1 space-y-2">
                 <label className="text-sm font-semibold text-gray-700">Nom du projet</label>
                 <input 
@@ -722,22 +717,22 @@ ${bullet}${bold('Roadmap :')} ${formData.roadmap || 'N/A'}`);
           </section>
 
           {/* Section 2 */}
-          <section id="section2" className="bg-white rounded-3xl p-8 shadow-sm border border-gray-100 scroll-mt-20">
-            <div className="flex items-center justify-between mb-8">
+          <section id="section2" className="bg-white rounded-2xl sm:rounded-3xl p-5 sm:p-8 shadow-sm border border-gray-100 scroll-mt-20">
+            <div className="flex items-center justify-between mb-6 sm:mb-8">
               <div className="flex items-center gap-3">
-                <div className="w-10 h-10 bg-indigo-50 text-indigo-600 rounded-xl flex items-center justify-center">
+                <div className="w-10 h-10 bg-indigo-50 text-indigo-600 rounded-xl flex items-center justify-center shrink-0">
                   <Layout className="w-5 h-5" />
                 </div>
                 <div>
-                  <h2 className="text-xl font-bold">Pages & Structure</h2>
-                  <p className="text-sm text-gray-500">Définissez l'architecture de votre site.</p>
+                  <h2 className="text-lg sm:text-xl font-bold">Pages & Structure</h2>
+                  <p className="text-xs sm:text-sm text-gray-500">Définissez l'architecture de votre site.</p>
                 </div>
               </div>
               <button 
                 onClick={addPage}
-                className="flex items-center gap-2 text-sm font-semibold text-indigo-600 hover:bg-indigo-50 px-4 py-2 rounded-xl transition-all"
+                className="flex items-center gap-2 text-xs sm:text-sm font-semibold text-indigo-600 hover:bg-indigo-50 px-3 sm:px-4 py-2 rounded-xl transition-all"
               >
-                <Plus className="w-4 h-4" /> Ajouter une page
+                <Plus className="w-4 h-4" /> <span className="hidden sm:inline">Ajouter une page</span><span className="sm:hidden">Ajouter</span>
               </button>
             </div>
 
@@ -839,18 +834,18 @@ ${bullet}${bold('Roadmap :')} ${formData.roadmap || 'N/A'}`);
           </section>
 
           {/* Section 4 */}
-          <section id="section4" className="bg-white rounded-3xl p-8 shadow-sm border border-gray-100 scroll-mt-20">
-            <div className="flex items-center gap-3 mb-8">
-              <div className="w-10 h-10 bg-emerald-50 text-emerald-600 rounded-xl flex items-center justify-center">
+          <section id="section4" className="bg-white rounded-2xl sm:rounded-3xl p-5 sm:p-8 shadow-sm border border-gray-100 scroll-mt-20">
+            <div className="flex items-center gap-3 mb-6 sm:mb-8">
+              <div className="w-10 h-10 bg-emerald-50 text-emerald-600 rounded-xl flex items-center justify-center shrink-0">
                 <Palette className="w-5 h-5" />
               </div>
               <div>
-                <h2 className="text-xl font-bold">Charte graphique</h2>
-                <p className="text-sm text-gray-500">Transmettez une identité visuelle cohérente.</p>
+                <h2 className="text-lg sm:text-xl font-bold">Charte graphique</h2>
+                <p className="text-xs sm:text-sm text-gray-500">Transmettez une identité visuelle cohérente.</p>
               </div>
             </div>
 
-            <div className="grid grid-cols-3 gap-8">
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 sm:gap-8">
               <div className="space-y-3">
                 <label className="text-sm font-semibold text-gray-700 block">Primaire</label>
                 <div className="flex items-center gap-3">
@@ -905,14 +900,14 @@ ${bullet}${bold('Roadmap :')} ${formData.roadmap || 'N/A'}`);
           </section>
 
           {/* Section 5 */}
-          <section id="section5" className="bg-white rounded-3xl p-8 shadow-sm border border-gray-100 scroll-mt-20">
-            <div className="flex items-center gap-3 mb-8">
-              <div className="w-10 h-10 bg-purple-50 text-purple-600 rounded-xl flex items-center justify-center">
+          <section id="section5" className="bg-white rounded-2xl sm:rounded-3xl p-5 sm:p-8 shadow-sm border border-gray-100 scroll-mt-20">
+            <div className="flex items-center gap-3 mb-6 sm:mb-8">
+              <div className="w-10 h-10 bg-purple-50 text-purple-600 rounded-xl flex items-center justify-center shrink-0">
                 <Settings className="w-5 h-5" />
               </div>
               <div>
-                <h2 className="text-xl font-bold">Fonctionnalités clés</h2>
-                <p className="text-sm text-gray-500">Cadrez les capacités techniques à implémenter.</p>
+                <h2 className="text-lg sm:text-xl font-bold">Fonctionnalités clés</h2>
+                <p className="text-xs sm:text-sm text-gray-500">Cadrez les capacités techniques à implémenter.</p>
               </div>
             </div>
 
@@ -928,7 +923,7 @@ ${bullet}${bold('Roadmap :')} ${formData.roadmap || 'N/A'}`);
                   className="w-full px-4 py-3 rounded-xl border border-gray-200 focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition-all resize-none"
                 />
               </div>
-              <div className="grid grid-cols-2 gap-6">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
                 <div className="space-y-2">
                   <label className="text-sm font-semibold text-gray-700">Stack technique</label>
                   <input 
@@ -956,18 +951,18 @@ ${bullet}${bold('Roadmap :')} ${formData.roadmap || 'N/A'}`);
           </section>
 
           {/* Section 8 */}
-          <section id="section8" className="bg-white rounded-3xl p-8 shadow-sm border border-gray-100 scroll-mt-20">
-            <div className="flex items-center gap-3 mb-8">
-              <div className="w-10 h-10 bg-cyan-50 text-cyan-600 rounded-xl flex items-center justify-center">
+          <section id="section8" className="bg-white rounded-2xl sm:rounded-3xl p-5 sm:p-8 shadow-sm border border-gray-100 scroll-mt-20">
+            <div className="flex items-center gap-3 mb-6 sm:mb-8">
+              <div className="w-10 h-10 bg-cyan-50 text-cyan-600 rounded-xl flex items-center justify-center shrink-0">
                 <Database className="w-5 h-5" />
               </div>
               <div>
-                <h2 className="text-xl font-bold">Technique & Données</h2>
-                <p className="text-sm text-gray-500">Détaillez la structure des données et les services tiers.</p>
+                <h2 className="text-lg sm:text-xl font-bold">Technique & Données</h2>
+                <p className="text-xs sm:text-sm text-gray-500">Détaillez la structure des données et les services tiers.</p>
               </div>
             </div>
             
-            <div className="grid grid-cols-2 gap-6">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
               <div className="col-span-2 space-y-2">
                 <label className="text-sm font-semibold text-gray-700">Modèle de données (Entités)</label>
                 <textarea 
@@ -992,14 +987,14 @@ ${bullet}${bold('Roadmap :')} ${formData.roadmap || 'N/A'}`);
               </div>
             </div>
           </section>
-          <section id="section6" className="bg-white rounded-3xl p-8 shadow-sm border border-gray-100 scroll-mt-20">
-            <div className="flex items-center gap-3 mb-8">
-              <div className="w-10 h-10 bg-rose-50 text-rose-600 rounded-xl flex items-center justify-center">
+          <section id="section6" className="bg-white rounded-2xl sm:rounded-3xl p-5 sm:p-8 shadow-sm border border-gray-100 scroll-mt-20">
+            <div className="flex items-center gap-3 mb-6 sm:mb-8">
+              <div className="w-10 h-10 bg-rose-50 text-rose-600 rounded-xl flex items-center justify-center shrink-0">
                 <Monitor className="w-5 h-5" />
               </div>
               <div>
-                <h2 className="text-xl font-bold">Contraintes & contexte</h2>
-                <p className="text-sm text-gray-500">Anticipez les limitations techniques ou métier.</p>
+                <h2 className="text-lg sm:text-xl font-bold">Contraintes & contexte</h2>
+                <p className="text-xs sm:text-sm text-gray-500">Anticipez les limitations techniques ou métier.</p>
               </div>
             </div>
 
@@ -1041,18 +1036,18 @@ ${bullet}${bold('Roadmap :')} ${formData.roadmap || 'N/A'}`);
           </section>
 
           {/* Section 7 */}
-          <section id="section7" className="bg-white rounded-3xl p-8 shadow-sm border border-gray-100 scroll-mt-20">
-            <div className="flex items-center gap-3 mb-8">
-              <div className="w-10 h-10 bg-orange-50 text-orange-600 rounded-xl flex items-center justify-center">
+          <section id="section7" className="bg-white rounded-2xl sm:rounded-3xl p-5 sm:p-8 shadow-sm border border-gray-100 scroll-mt-20">
+            <div className="flex items-center gap-3 mb-6 sm:mb-8">
+              <div className="w-10 h-10 bg-orange-50 text-orange-600 rounded-xl flex items-center justify-center shrink-0">
                 <Users className="w-5 h-5" />
               </div>
               <div>
-                <h2 className="text-xl font-bold">Stratégie & Cible</h2>
-                <p className="text-sm text-gray-500">Approfondissez la connaissance de vos utilisateurs et du marché.</p>
+                <h2 className="text-lg sm:text-xl font-bold">Stratégie & Cible</h2>
+                <p className="text-xs sm:text-sm text-gray-500">Approfondissez la connaissance de vos utilisateurs et du marché.</p>
               </div>
             </div>
             
-            <div className="grid grid-cols-2 gap-6">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
               <div className="col-span-2 space-y-2">
                 <label className="text-sm font-semibold text-gray-700">User Personas</label>
                 <textarea 
@@ -1079,14 +1074,14 @@ ${bullet}${bold('Roadmap :')} ${formData.roadmap || 'N/A'}`);
           </section>
 
           {/* Section 9 */}
-          <section id="section9" className="bg-white rounded-3xl p-8 shadow-sm border border-gray-100 scroll-mt-20">
-            <div className="flex items-center gap-3 mb-8">
-              <div className="w-10 h-10 bg-amber-50 text-amber-600 rounded-xl flex items-center justify-center">
+          <section id="section9" className="bg-white rounded-2xl sm:rounded-3xl p-5 sm:p-8 shadow-sm border border-gray-100 scroll-mt-20">
+            <div className="flex items-center gap-3 mb-6 sm:mb-8">
+              <div className="w-10 h-10 bg-amber-50 text-amber-600 rounded-xl flex items-center justify-center shrink-0">
                 <Milestone className="w-5 h-5" />
               </div>
               <div>
-                <h2 className="text-xl font-bold">Roadmap & Futur</h2>
-                <p className="text-sm text-gray-500">Prévoyez l'évolution de votre application.</p>
+                <h2 className="text-lg sm:text-xl font-bold">Roadmap & Futur</h2>
+                <p className="text-xs sm:text-sm text-gray-500">Prévoyez l'évolution de votre application.</p>
               </div>
             </div>
             
@@ -1104,12 +1099,12 @@ ${bullet}${bold('Roadmap :')} ${formData.roadmap || 'N/A'}`);
               </div>
             </div>
           </section>
-          <div className="flex items-center justify-center pt-8">
+          <div className="flex items-center justify-center pt-4 sm:pt-8">
             <button 
               onClick={handleGeneratePrompt}
-              className="group relative bg-blue-600 hover:bg-blue-700 text-white px-12 py-5 rounded-2xl font-bold text-lg transition-all flex items-center gap-4 shadow-xl shadow-blue-200 active:scale-95"
+              className="group relative w-full sm:w-auto bg-blue-600 hover:bg-blue-700 text-white px-8 sm:px-12 py-4 sm:py-5 rounded-2xl font-bold text-base sm:text-lg transition-all flex items-center justify-center gap-4 shadow-xl shadow-blue-200 active:scale-95"
             >
-              Générer le prompt structuré
+              Générer le prompt
               <ChevronRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
             </button>
           </div>
