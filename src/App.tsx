@@ -17,7 +17,8 @@ import {
   Link,
   MessageSquare,
   Milestone,
-  X
+  X,
+  Loader2
 } from 'lucide-react';
 import { motion, AnimatePresence } from 'motion/react';
 import { FormState, INITIAL_STATE, AMBIANCE_OPTIONS, Page } from './types';
@@ -56,6 +57,7 @@ export default function App() {
   const [activeSection, setActiveSection] = useState('section1');
   const isScrollingRef = useRef(false);
   const [view, setView] = useState<'landing' | 'form' | 'preview'>('landing');
+  const [isLoading, setIsLoading] = useState(false);
   const [editablePrompt, setEditablePrompt] = useState('');
   const [promptOptions, setPromptOptions] = useState<PromptOptions>({
     showSummary: true,
@@ -245,6 +247,51 @@ ${bullet}${bold('Roadmap :')} ${formData.roadmap || 'N/A'}`);
     }
   };
 
+  const handleStart = () => {
+    setIsLoading(true);
+    setTimeout(() => {
+      setView('form');
+      setIsLoading(false);
+    }, 3000);
+  };
+
+  if (isLoading) {
+    return (
+      <div className="min-h-screen bg-white flex flex-col items-center justify-center p-6">
+        <motion.div
+          initial={{ opacity: 0, scale: 0.9 }}
+          animate={{ opacity: 1, scale: 1 }}
+          className="flex flex-col items-center gap-6 text-center"
+        >
+          <div className="relative">
+            <motion.div
+              animate={{ rotate: 360 }}
+              transition={{ duration: 2, repeat: Infinity, ease: "linear" }}
+              className="w-20 h-20 rounded-full border-4 border-blue-50 border-t-blue-600"
+            />
+            <div className="absolute inset-0 flex items-center justify-center">
+              <Zap className="w-8 h-8 text-blue-600" />
+            </div>
+          </div>
+          
+          <div className="space-y-2">
+            <h2 className="text-2xl font-black tracking-tight text-gray-900">Préparation de l'espace</h2>
+            <p className="text-gray-500 font-medium">Configuration de votre architecte de prompts...</p>
+          </div>
+
+          <div className="w-48 h-1.5 bg-gray-100 rounded-full overflow-hidden">
+            <motion.div
+              initial={{ x: "-100%" }}
+              animate={{ x: "0%" }}
+              transition={{ duration: 3, ease: "easeInOut" }}
+              className="w-full h-full bg-blue-600"
+            />
+          </div>
+        </motion.div>
+      </div>
+    );
+  }
+
   if (view === 'landing') {
     return (
       <div className="min-h-screen bg-white flex items-center justify-center p-6 overflow-hidden relative">
@@ -274,7 +321,7 @@ ${bullet}${bold('Roadmap :')} ${formData.roadmap || 'N/A'}`);
             </p>
             <div className="flex flex-col sm:flex-row items-center gap-6">
               <button
-                onClick={() => setView('form')}
+                onClick={handleStart}
                 className="w-full sm:w-auto bg-blue-600 hover:bg-blue-700 text-white px-8 py-4 rounded-2xl font-bold text-lg transition-all shadow-xl shadow-blue-200 active:scale-95 flex items-center justify-center gap-2"
               >
                 Commencer
@@ -351,6 +398,14 @@ ${bullet}${bold('Roadmap :')} ${formData.roadmap || 'N/A'}`);
             <div className="absolute -bottom-10 -left-10 w-60 h-60 bg-indigo-200 rounded-full blur-[80px] opacity-20 -z-10" />
           </motion.div>
         </main>
+
+        <footer className="absolute bottom-8 left-0 w-full px-10">
+          <div className="max-w-6xl mx-auto">
+            <p className="text-gray-400 text-sm font-medium">
+              © {new Date().getFullYear()} PromptArchitect — Conçu par <span className="text-gray-900 font-bold">Steve EMANE</span>
+            </p>
+          </div>
+        </footer>
       </div>
     );
   }
@@ -369,6 +424,13 @@ ${bullet}${bold('Roadmap :')} ${formData.roadmap || 'N/A'}`);
             <h1 className="text-xl font-bold tracking-tight text-gray-900">Aperçu du Prompt</h1>
           </div>
           <div className="flex items-center gap-3">
+            <button 
+              onClick={() => setView('landing')}
+              className="text-gray-500 hover:text-red-600 font-medium px-4 py-2 flex items-center gap-2 transition-colors"
+            >
+              <X className="w-4 h-4" />
+              Quitter
+            </button>
             <button 
               onClick={() => setView('form')}
               className="text-gray-500 hover:text-gray-900 font-medium px-4 py-2"
@@ -475,6 +537,12 @@ ${bullet}${bold('Roadmap :')} ${formData.roadmap || 'N/A'}`);
           </div>
         </main>
 
+        <footer className="max-w-7xl mx-auto py-12 px-8 text-left border-t border-gray-200 mt-12">
+          <p className="text-gray-400 text-sm font-medium">
+            © {new Date().getFullYear()} PromptArchitect — Conçu par <span className="text-gray-900 font-bold">Steve EMANE</span>
+          </p>
+        </footer>
+
         {/* Success Notification */}
         <AnimatePresence>
           {isGenerated && (
@@ -517,12 +585,21 @@ ${bullet}${bold('Roadmap :')} ${formData.roadmap || 'N/A'}`);
           <div className="w-6 h-6 bg-blue-600 rounded-lg" />
           <h1 className="text-xl font-bold tracking-tight text-gray-900">PromptArchitect</h1>
         </div>
-        <button 
-          onClick={handleGeneratePrompt}
-          className="bg-blue-600 hover:bg-blue-700 text-white px-5 py-2 rounded-full font-medium transition-all flex items-center gap-2 shadow-lg shadow-blue-100 active:scale-95"
-        >
-          Générer le prompt
-        </button>
+        <div className="flex items-center gap-3">
+          <button 
+            onClick={() => setView('landing')}
+            className="text-gray-500 hover:text-red-600 font-medium px-4 py-2 flex items-center gap-2 transition-colors"
+          >
+            <X className="w-4 h-4" />
+            Quitter
+          </button>
+          <button 
+            onClick={handleGeneratePrompt}
+            className="bg-blue-600 hover:bg-blue-700 text-white px-5 py-2 rounded-full font-medium transition-all flex items-center gap-2 shadow-lg shadow-blue-100 active:scale-95"
+          >
+            Générer le prompt
+          </button>
+        </div>
       </header>
 
       <main className="max-w-6xl mx-auto flex gap-8 p-8">
@@ -1038,6 +1115,12 @@ ${bullet}${bold('Roadmap :')} ${formData.roadmap || 'N/A'}`);
           </div>
         </div>
       </main>
+
+      <footer className="max-w-6xl mx-auto py-12 px-8 text-left border-t border-gray-200 mt-12">
+        <p className="text-gray-400 text-sm font-medium">
+          © {new Date().getFullYear()} PromptArchitect — Conçu par <span className="text-gray-900 font-bold">Steve EMANE</span>
+        </p>
+      </footer>
 
       {/* Success Notification */}
       <AnimatePresence>
