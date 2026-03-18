@@ -277,7 +277,7 @@ ${bullet}${bold('Roadmap :')} ${formData.roadmap || 'N/A'}`);
                 onClick={() => setView('form')}
                 className="w-full sm:w-auto bg-blue-600 hover:bg-blue-700 text-white px-8 py-4 rounded-2xl font-bold text-lg transition-all shadow-xl shadow-blue-200 active:scale-95 flex items-center justify-center gap-2"
               >
-                Créer un projet
+                Commencer
                 <ChevronRight className="w-5 h-5" />
               </button>
               <button className="w-full sm:w-auto bg-white hover:bg-gray-50 text-gray-900 border border-gray-200 px-8 py-4 rounded-2xl font-bold text-lg transition-all active:scale-95">
