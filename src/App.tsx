@@ -272,7 +272,7 @@ ${bullet}${bold('Roadmap :')} ${formData.roadmap || 'N/A'}`);
             <p className="text-lg md:text-xl text-gray-500 mb-10 max-w-lg leading-relaxed font-medium">
               Structurez vos idées, définissez votre design et générez des prompts optimisés pour Lovable, Google AI Studio, Bolt et v0.
             </p>
-            <div className="flex flex-col sm:flex-row items-center gap-3">
+            <div className="flex flex-col sm:flex-row items-center gap-6">
               <button
                 onClick={() => setView('form')}
                 className="w-full sm:w-auto bg-blue-600 hover:bg-blue-700 text-white px-8 py-4 rounded-2xl font-bold text-lg transition-all shadow-xl shadow-blue-200 active:scale-95 flex items-center justify-center gap-2"
@@ -280,9 +280,25 @@ ${bullet}${bold('Roadmap :')} ${formData.roadmap || 'N/A'}`);
                 Commencer
                 <ChevronRight className="w-5 h-5" />
               </button>
-              <button className="w-full sm:w-auto bg-white hover:bg-gray-50 text-gray-900 border border-gray-200 px-8 py-4 rounded-2xl font-bold text-lg transition-all active:scale-95">
-                Explorer
-              </button>
+              
+              <div className="flex items-center gap-3">
+                <div className="flex -space-x-2">
+                  {[1, 2, 3].map((i) => (
+                    <div key={i} className="w-8 h-8 rounded-full border-2 border-white bg-gray-200 overflow-hidden">
+                      <img 
+                        src={`https://picsum.photos/seed/user${i}/32/32`} 
+                        alt="User" 
+                        className="w-full h-full object-cover"
+                        referrerPolicy="no-referrer"
+                      />
+                    </div>
+                  ))}
+                </div>
+                <div className="flex flex-col">
+                  <span className="text-sm font-bold text-gray-900">100+ Utilisateurs</span>
+                  <span className="text-[10px] text-gray-500 font-medium">Nous font confiance</span>
+                </div>
+              </div>
             </div>
           </motion.div>
 
